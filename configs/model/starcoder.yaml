@@ -1,0 +1,7 @@
+name: "bigcode/starcoder"
+api_name: "vllm"
+sampling_params:
+  kwargs:
+    temperature: 0.5  # temperature for sampling
+    top_k: 50         # top k tokens to consider
+    top_p: 0.95       # cum prob of top tokens to consider

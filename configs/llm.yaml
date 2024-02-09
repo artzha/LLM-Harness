@@ -1,0 +1,4 @@
+defaults:
+  - data: humaneval
+  - model: codellama
+  - trainer: standard

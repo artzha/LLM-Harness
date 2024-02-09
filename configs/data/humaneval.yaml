@@ -1,0 +1,2 @@
+root_path: "data"
+save_completion_path: "model_outputs/humaneval/codellama.jsonl"
