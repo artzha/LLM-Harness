@@ -1,1 +1,3 @@
 root_path: "data/multipl-t-python"
+save_completion_path: "model_outputs/multipl-t-python/gpt2.jsonl"
+response_template: "### Assistant: "

@@ -13,7 +13,11 @@ from data import HumanevalDataset
 import data_utils as du
 from tqdm import tqdm
 
+def format_completions(code):
+    return code.replace(">>> ", "")
+
 def _truncate_code_at_stopwords(code, stop_words):
+    code =  format_completions(code)
     min_stop_idx = len(code)
     for stop_word in stop_words:
         stop_index = code.find(stop_word)
@@ -24,8 +28,9 @@ stop_words = ["\ndef", "\nclass", "\nif", "\n#", "\nprint"]
 
 class LLM_Wrapper(object):
     def __init__(self, cfg: DictConfig):
+        model = cfg.model.weights_path if cfg.model.get("weights_path", None) else cfg.model.name
         self.model = LLM(
-            model=cfg.model.name
+            model=model
         )
         self.model_name = cfg.model.name
         self.api_name = cfg.model.api_name
@@ -34,8 +39,12 @@ class LLM_Wrapper(object):
         self.sampling_params = SamplingParams(**cfg.model.sampling_params.kwargs)
 
     def __call__(self, prompt):
+        """
+        prompt is a list of strings
+        """
         # TODO: Modify this for multiple prompts
-        outputs     = self.model.generate(prompt[0], self.sampling_params)
+        # n = self.sampling_params.n
+        outputs     = self.model.generate(prompt, self.sampling_params)
 
         completions   =  [_truncate_code_at_stopwords(output.outputs[0].text, stop_words) for output in outputs]
 

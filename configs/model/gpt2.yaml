@@ -1,5 +1,6 @@
 name: "gpt2"
 api_name: "vllm"
+weights_path: ""
 sampling_params:
   kwargs:
     best_of: 20
@@ -9,6 +10,8 @@ sampling_params:
     max_tokens: 1024
 training_params:
   kwargs:
-    dataset_text_field: "text"
+    dataset_text_field: "content"
     packing: True
     max_seq_length: 1024
+    neftune_noise_alpha: 5
+    dataset_batch_size: 10
