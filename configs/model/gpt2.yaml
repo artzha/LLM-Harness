@@ -1,4 +1,4 @@
-name: "meta-llama/Llama-2-13b-hf"
+name: "gpt2"
 api_name: "vllm"
 sampling_params:
   kwargs:

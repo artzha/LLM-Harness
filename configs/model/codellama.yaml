@@ -2,9 +2,9 @@ name: "codellama/CodeLlama-13b-hf"
 api_name: "vllm"
 sampling_params:
   kwargs:
-    best_of: 9
-    n: 9
-    frequency_penalty: 0.0
+    best_of: 20
+    n: 20
+    top_p: 0.95
     temperature: 0.2
     max_tokens: 1024
     

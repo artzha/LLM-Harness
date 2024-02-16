@@ -34,6 +34,7 @@ class LLM_Wrapper(object):
         self.sampling_params = SamplingParams(**cfg.model.sampling_params.kwargs)
 
     def __call__(self, prompt):
+        # TODO: Modify this for multiple prompts
         outputs     = self.model.generate(prompt[0], self.sampling_params)
 
         completions   =  [_truncate_code_at_stopwords(output.outputs[0].text, stop_words) for output in outputs]
