@@ -23,6 +23,14 @@ def main(cfg: DictConfig):
     dataset = datasets.load_from_disk(cfg.data.root_path)
     import pdb; pdb.set_trace()
 
+    # Load the model
+    trainer = SFTTrainer(
+        cfg.model.name,
+        train_dataset=dataset,
+        **cfg.model.training_params.kwargs
+    )
+    trainer.train()    
+
 
 if __name__ == "__main__":
-    train()
+    main()

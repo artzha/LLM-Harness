@@ -7,3 +7,8 @@ sampling_params:
     top_p: 0.95
     temperature: 0.2
     max_tokens: 1024
+training_params:
+  kwargs:
+    dataset_text_field: "text"
+    packing: True
+    max_seq_length: 1024
